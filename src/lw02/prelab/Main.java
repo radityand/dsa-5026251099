@@ -23,7 +23,6 @@ public class Main{
                     nameExist = true;
                 }
             }
-
             if (!nameExist) {
                 customer.add(new String[]{name, "0"});
             }
@@ -49,7 +48,6 @@ public class Main{
                     }
                 }
             }
-
             if(type.equals("WITHDRAW")){
                 for(String[] cust : customer){
                     if(cust[0].equals(name)){
@@ -66,7 +64,6 @@ public class Main{
                 }
             }
         }
-
         System.out.println("=== Final Balances ===");
         for(String[] cust : customer){
             System.out.println(cust[0] + " : " + cust[1]);
