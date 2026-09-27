@@ -4,24 +4,28 @@ public abstract class Rental implements Chargeable {
     private String id;
     private int days;
 
-    public Rental(String id, int days) {
+    protected Rental(String id, int days) {
+        if (days <= 0) {
+            throw new IllegalArgumentException("Days must be positive.");
+        }
         this.id = id;
         this.days = days;
     }
 
     public String getId() {
-        return this.id;
+        return id;
     }
 
     public int getDays() {
-        return this.days;
+        return days;
     }
 
+    @Override
     public abstract int calculateCharge();
 
     public int calculateCharge(int units) {
         if (units <= 0) {
-            throw new IllegalArgumentException("Units tidak boleh dibawah nol");
+            throw new IllegalArgumentException("Units must be positive.");
         }
         return units * calculateCharge();
     }
@@ -30,7 +34,7 @@ public abstract class Rental implements Chargeable {
         return "Rental";
     }
 
-    public String summary(int units) {
-        return id + " | " + label() + " | " + calculateCharge(units);
+    public String summary() {
+        return id + " | " + label() + " | " + calculateCharge();
     }
 }
